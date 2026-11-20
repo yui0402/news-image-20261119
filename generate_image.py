@@ -1,5 +1,8 @@
 """Render entry.png — a one-image newspaper front page for Thursday
-19 November 2026, drawn entirely with Pillow primitives.
+19 November 2026, drawn entirely with Pillow primitives. This is the
+full-day edition: it carries the day's later developments, including the
+Shenzhen summit declaration, the World Court verdict on Myanmar, and
+the second wave of mine strikes in the Strait of Hormuz.
 
 The submitted entry point (main.py) never runs this file; it ships the
 finished PNG. This script is kept in the repository so the artwork can be
@@ -103,7 +106,7 @@ def flag_panel(x, y, width, colours, label, emblem=None):
 def lead_story():
     x, w = 36, 612
     y = section_label(x, 172, "APEC SUMMIT  ·  SHENZHEN, CHINA")
-    y = paragraph(x, y, "Trump, Xi and Putin meet face to face in Shenzhen",
+    y = paragraph(x, y, "Trump, Xi and Putin end summit with nuclear pledge",
                   "headline", 41, w, gap=4) + 6
     box_h = 150
     pen.rectangle([x, y, x + w, y + box_h], fill=PALETTE["white"],
@@ -137,21 +140,21 @@ def lead_story():
     pen.text((x + w // 2, y + 128), "FIRST TRILATERAL SUMMIT  ·  APEC",
              font=face("bold", 15), fill=PALETTE["muted"], anchor="ma")
     y += box_h + 12
-    pen.text((x, y), "XI HUGS TRUMP ON THE TARMAC  ·  KYIV URGES PRESSURE ON PUTIN",
+    pen.text((x, y), "JOINT DECLARATION: UN REFORM, MORE OIL, NUCLEAR TALKS",
              font=face("bold", 16), fill=PALETTE["accent"])
     y += 30
     paragraph(x, y,
-              "Xi Jinping gave Donald Trump a rare airport welcome and hailed "
-              "ties with Russia as a source of stability, before the three "
-              "presidents sat down together at the APEC summit — a meeting "
-              "Beijing calls of groundbreaking significance.",
+              "After a 90-minute meeting, the three leaders issued a joint "
+              "declaration vowing talks to cut nuclear risks — 'a nuclear "
+              "war cannot be won and must never be fought' — plus UN reform "
+              "and more oil supply.",
               "body", 20, w, gap=5)
 
 
 def side_column():
     x, w = 684, 304
     y = section_label(x, 172, "STRAIT OF HORMUZ  ·  ESCALATION")
-    y = paragraph(x, y, "Three tankers ablaze after hitting mines",
+    y = paragraph(x, y, "Two more supertankers hit mines in Hormuz",
                   "headline", 27, w, gap=3) + 4
     pen.rectangle([x, y, x + w, y + 62], fill=PALETTE["white"],
                   outline=PALETTE["rule"], width=2)
@@ -166,18 +169,18 @@ def side_column():
     pen.line([x + 6, hull_y - 2, x + w - 6, hull_y - 2], fill=PALETTE["water"], width=3)
     y += 70
     y = paragraph(x, y,
-                  "Iran says three oil tankers caught fire after striking mines "
-                  "east of Hormuz, as Gulf states repel Iranian drone attacks.",
+                  "Two more supertankers carrying 4 million barrels of crude "
+                  "hit mines and exploded, Iran says — the fifth vessels "
+                  "struck in a day.",
                   "body", 18, w, gap=4) + 10
     pen.line([x, y, x + w, y], fill=PALETTE["rule"], width=2)
     y += 12
     y = section_label(x, y, "WORLD COURT  ·  THE HAGUE")
-    y = paragraph(x, y, "Court rules on Myanmar genocide case",
+    y = paragraph(x, y, "Court finds Myanmar guilty of genocide",
                   "headline", 25, w, gap=3) + 4
     paragraph(x, y,
-              "The World Court delivers its judgment on Myanmar's alleged "
-              "genocide of the Rohingya, watched by 1.2 million refugees in "
-              "Bangladesh.",
+              "The World Court finds Myanmar guilty of genocide and orders "
+              "compensation — the first time it has held a state responsible.",
               "body", 18, w, gap=4)
 
 
@@ -185,16 +188,17 @@ def story_boxes():
     top, height = 634, 170
     width = (PAGE - 72 - 24) // 3
     stories = [
-        ("GAMING", "GTA VI launches worldwide",
-         "Grand Theft Auto VI goes on sale around the world after a 13-year "
-         "wait, to near-perfect reviews — the biggest entertainment release "
-         "of the year."),
+        ("GAMING", "GTA VI scores 99 and breaks launch records",
+         "GTA VI scores 99 on Metacritic and sells an estimated 24.6m "
+         "copies worth $2.36bn on day one — a record launch."),
         ("ART MARKET", "Van Gogh sells for a record $190.4m",
          "A Van Gogh fetches $190.4 million at auction, a record for the "
-         "artist, after a row over its Nazi-era history."),
+         "artist, after a row over its Nazi-era history. Buyer: Bill "
+         "Acquavella."),
         ("SPACE", "Voyager 1 reaches one light-day",
-         "NASA's Voyager 1, launched in 1977, is now a full light-day from "
-         "Earth — its radio signals take 24 hours to arrive."),
+         "NASA confirms Voyager 1, launched in 1977, crossed one light-day "
+         "from Earth — 16.1 billion miles out, its signals now take 24 "
+         "hours to arrive."),
     ]
     for i, (label, headline, body) in enumerate(stories):
         bx = 36 + i * (width + 12)
@@ -210,17 +214,17 @@ def briefs():
     pen.line([36, top - 8, PAGE - 36, top - 8], fill=PALETTE["rule"], width=2)
     items = [
         ("MARKETS JOLTED",
-         "Copper plunges over 5% as tech jitters hit metals; gold sinks to a "
-         "14-month low."),
+         "Copper steadies after a 5.7% plunge; gold holds near a 14-month "
+         "low as a December Fed hike is priced in."),
         ("CYCLONE AKVAN",
-         "Severe cyclone Akvan closes on India's east coast; red warning for "
-         "Andhra and Odisha."),
+         "Cyclone Akvan nears India's east coast, with landfall due Friday "
+         "near Gopalpur; over 120,000 people evacuated."),
         ("US–VENEZUELA PACT",
-         "Washington restores military ties with Venezuela; Hegseth signs a "
-         "defence deal."),
+         "Hegseth calls Venezuela a 'compliant security partner' as "
+         "Washington restores military ties; full terms undisclosed."),
         ("ALSO TODAY",
-         "Crimean Bridge attacked again, Russia says. US tech outages put old "
-         "infrastructure under scrutiny."),
+         "Crimean Bridge hit a third time in a week, halting trains; Trump "
+         "plays down US tech outages."),
     ]
     width = (PAGE - 72 - 24) // 2
     for i, (headline, body) in enumerate(items):
